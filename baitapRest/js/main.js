@@ -1,17 +1,26 @@
-document.getElementById("btnKhoi1").onclick = function () {
-    let toan = document.getElementById("inpToan").value * 1;
-    let ly = document.getElementById("inpLy").value * 1;
-    let hoa = document.getElementById("inpHoa").value * 1;
-    let avg = 0
-    avg = (toan + ly + hoa) / 3;
-    document.getElementById("tbKhoi1").innerHTML = avg;
-};
-document.getElementById("btnKhoi2").onclick = function () {
-    let van = document.getElementById("inpVan").value * 1;
-    let su = document.getElementById("inpSu").value * 1;
-    let dia = document.getElementById("inpDia").value * 1;
-    let english = document.getElementById("inpEnglish").value * 1;
-    let avg = 0
-    avg = (van + su + dia + english) / 4;
-    document.getElementById("tbKhoi2").innerHTML = avg;
+function getEle(id) {
+    return document.getElementById(id);
+}
+
+getEle("btnKhoi1").addEventListener("click", () => {
+    let toan = getEle("inpToan").value * 1;
+    let ly = getEle("inpLy").value * 1;
+    let hoa = getEle("inpHoa").value * 1;
+    let diemTbKhoi1 = tinhDiemTb(toan, ly, hoa);
+    getEle("tbKhoi1").innerHTML = `${diemTbKhoi1}`;
+})
+getEle("btnKhoi2").addEventListener("click", () => {
+    let van = getEle("inpVan").value * 1;
+    let su = getEle("inpSu").value * 1;
+    let dia = getEle("inpDia").value * 1;
+    let english = getEle("inpEnglish").value * 1;
+    let diemTbKhoi2 = tinhDiemTb(van, su, dia, english);
+    getEle("tbKhoi2").innerHTML = `${diemTbKhoi2}`;
+})
+tinhDiemTb = (...diemTb) => {
+    let tongDiem = 0;
+    diemTb.forEach(function (diem) {
+        return tongDiem += diem;
+    });
+    return tongDiem / diemTb.length
 }
